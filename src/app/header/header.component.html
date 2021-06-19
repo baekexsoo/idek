@@ -1,0 +1,143 @@
+<header id="header" class="u-header u-header--abs-top-md u-header--show-hide-md menu"
+          data-header-fix-moment="500"
+          data-header-fix-effect="slide">
+   
+
+    <div class="u-header__section" style="box-shadow: rgba(0,0,0,0.2) 0 2px 6px 0;">
+      <!-- Topbar -->
+      
+      <!-- End Topbar -->
+
+      <div id="logoAndNav" class="container col-sm-12" style=" margin-right:0%; margin-left: 0% "> 
+        <!-- Nav -->
+        <nav class="js-mega-menu navbar navbar-expand-md u-header__navbar">
+          <!-- Logo -->
+          <a class="navbar-brand u-header__navbar-brand u-header__navbar-brand-top-space" href="../home/index.html" aria-label="DUNIYA" style="width: 4.375rem">
+            <img src="../assets/svg/logos/logo.png" class="d-none d-lg-inline-block" style="height: 70px;"lt="Logo">
+            <img src="../assets/svg/logos/logo-mobile.png" class="d-inline-block d-lg-none" style="height: 58px" alt="Logo" >
+          </a>
+          <!-- End Logo -->
+            
+            <div class="container menu_mobil" style="">
+               
+              <ul class="navmenu d-none d-lg-inline-block" style="margin-left: 16%;" id="nav">
+                 
+                <li class="d-sm-inline-block list-inline-item" routerLinkActive="active">
+                  <a class="u-header__topbar-nav-link dec navli" routerLink="/marches" style="text-decoration: none;"> Marchés</a>
+               
+                </li>
+                <li class="d-sm-inline-block list-inline-item mr-2 defile" routerLinkActive="active">
+                  <a class="u-header__topbar-nav-link dec" [routerLink]="['/culture']" style="text-decoration: none"> Produits agricoles</a>
+               
+                </li>
+                <li class="d-sm-inline-block list-inline-item mr-2 defile" routerLinkActive="active">
+                  <a class="u-header__topbar-nav-link dec" [routerLink]="['/acheteur']" style="text-decoration: none"> Acheteurs</a>
+               
+                </li>
+                <li class="d-sm-inline-block list-inline-item mr-2 defile" routerLinkActive="active">
+                  <a class="u-header__topbar-nav-link dec" [routerLink]="['/producteurs']" style="text-decoration: none"> Union producteur</a>
+               
+                </li>
+                <li class="nav-item dropdown defile" routerLinkActive="active"   [routerLinkActiveOptions]="{ exact: true }">  
+
+                    <a class="nav-link dropdown-toggle togle" style="font-size: 0.875rem;" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Intervenants</a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item defile" [routerLink]="['/ong']">ONG</a>
+                      <a class="dropdown-item defile" [routerLink]="['/exportateurs']">Exportateurs</a>
+                      <a class="dropdown-item defile" [routerLink]="['/distributeurs']">Distributeurs</a>
+                      <a class="dropdown-item defile" [routerLink]="['/transformateur']">Transformateurs</a>
+                    </div>
+                  </li>
+                  
+              </ul>
+              
+                <!--div class="dropdown">
+                  <button class="dropbtn">Dropdown</button>
+                  <div class="dropdown-content">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                  </div>
+                </div-->
+              <div class="d-block d-sm-none dropdown">
+              <button class="dropbtn" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span > <i class="fa fa-bars" style="font-size:7x; color: #fff; font-size: 2rem"></i> </span>
+              </button>
+              <div class="dropdown-content" style="margin-left:-175%; height: 555px">
+                <ul class="navbar-nav">
+                  <li class="nav-item active">
+                    <a class="nav-link navli" routerLink="/marches" >Marchés</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link navli" [routerLink]="['/culture']">Produits agricoles</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link navli" [routerLink]="['/programmes']">Programmes</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link navli" [routerLink]="['/ong']">ONG</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link navli" [routerLink]="['/producteurs']">Union  producteur</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link navli" [routerLink]="['/exportateurs']">Exportateurs</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link navli" [routerLink]="['/distributeurs']">Distributeurs</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link navli" [routerLink]="['/transformateur']">Transformateurs</a>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+              <!--<ul class="font_url menu-position d-sm-none .d-md-block" id="nav">
+                <li>
+                  <div class="dropleft">
+                    <a class="nav-link  togle" id="dropdownMenuButton" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v" style="color:#fff"></i>
+                    </a>
+                    <div class="dropdown-menu mobile-menu-position" aria-labelledby="dropdownMenuButton">
+                      <ul class="list-group">
+                        <li class="list-group dropdown-item mobile-menu-position-font" routerLink="/accueil">Marchés</li>
+                        <li class="list-group dropdown-item mobile-menu-position-font">Produits agricoles</li>
+                        <li class="list-group dropdown-item mobile-menu-position-font">Programmes</li>
+                        <li class="list-group dropdown-item mobile-menu-position-font dropdown-toggle" id="dropdownMenuButton" data-hover="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                          Intervenants
+                        
+                        </li>
+                       
+                            <ul class=" dropdown-menu "  aria-labelledby="dropdownMenuButton" style="margin-right: -15px;">
+                                <li class="sub-menu dropdown-menu">ONG</li>
+                                <li class="sub-menu dropdown-menu">Exportateur</li>
+                                <li class="dropdown-menu sub-menu">Distributeurs</li>
+                                <li class="dropdown-menu sub-menu">Transformateurs</li>
+                            </ul>
+            
+                      </ul>
+                    
+                      <div class="collapse" id="collapseExample" >
+                          <div class="card card-body " style="border: none; color: #37b82c; background-color: #ffffff21 !important;">
+                            <ul class="list-group" style="margin-right: -15px;">
+                                <li class="list-group sub-menu">Ong</li>
+                                <li class="list-group sub-menu">Exportateurs</li>
+                                <li class="list-group sub-menu">Distributeurs</li>
+                                <li class="list-group sub-menu">Transformateurs</li>
+                            </ul>
+                          </div>
+                        </div>
+                    
+                    </div>
+                  </div>
+                </li>
+              </ul> -->
+              
+             
+            </div>
+          </nav>
+        <!-- End Nav -->
+      </div>
+    </div>
+  </header>

@@ -1,0 +1,350 @@
+
+<!-- 
+  <!-- ========== HEADER ========== -->
+<app-header></app-header>
+<!-- ========== END HEADER ========== -->
+
+<!-- ========== MAIN ========== -->
+<main id="content" role="main">
+  <!-- Description Section -->
+
+  <!-- section processus de prédiction -->
+  <div class="u-space-2-top u-space-0--lg position-relative">
+    <div class="d-lg-flex align-items-lg-center min-height-100vh--lg position-relative class_marg class_ma">
+      <div class=" u-space-1-bottom u-space-bottom-0--lg mt-5">
+        <!-- Accueil -->
+        <div class="w-lg-55 ml-4 " *ngIf="step==0">
+
+          <div class="media align-items-center mb-4">
+            <div class="d-inline-block mb-3">
+              <a class="media align-items-center bg-primary text-white font-size-14 rounded-pill p-2 pr-3" href="#">
+                <span class="d-flex mr-3">
+                  <span class="u-label u-label--sm u-label--white font-weight-bold">Commençons!</span>
+                </span>
+                <span class="media-body">
+                  Trouves la meilleure façon de cultiver ta terre.
+                </span>
+              </a>
+            </div>
+          </div>
+
+
+
+          <div class="mb-4">
+            <h1 class="text-primary display-4 font-size-48--md-down font-weight-bold">L'agriculture en 2018</h1>
+            <p class="lead">s'accompagne de la Data Science.</p>
+          </div>
+
+
+          <a class="btn btn-primary u-btn-primary u-btn-wide transition-3d-hover text-white" (click)="goto(1)">
+            Démarrez
+            <span class="fa fa-angle-right ml-2"></span>
+          </a>
+        </div>
+        <!-- End Accueil -->
+
+        <!-- selection sol -->
+        <div class="w-lg-55 mt-5" *ngIf="step==1">
+          <div class="u-bg-img-hero" style="background-image: url(../../assets/svg/bg/bg1.svg);">
+            <div class="container">
+              <!-- Title -->
+              <div class="d-sm-flex justify-content-sm-between align-items-sm-center mb-5">
+                <h2 class="h3 font-weight-medium">Quel est votre type de sol ? </h2>
+              </div>
+              <!-- End Title -->
+
+              <!-- formulaire de filtre de type de sol-->
+              <div class="row ml-2">
+                <form class="js-validate ">
+                  <div class="row">
+                    <div class="col-lg-2 col-sm-5 mb-4 mb-lg-0">
+                      <!-- Input -->
+                      <label class="d-block" for="keywordInput">
+                        <span class="d-block font-size-13 text-secondary">Département</span>
+                      </label>
+                      <div class="js-focus-state input-group u-form u-form--no-addon-brd">
+                        <select class="custom-select select_box" name="departement" (change)="onDepartementSelect()" [(ngModel)]="selectedDepartement">
+                          <option selected *ngFor="let d of departements" [ngValue]="d">{{d.nom}}</option>
+                        </select>
+                      </div>
+                      <!-- End Input -->
+                    </div>
+                    <div class="col-lg-2 col-sm-5 mb-4 mb-lg-0">
+                      <!-- Input -->
+                      <label class="d-block" for="locationInput">
+                        <span class="d-block font-size-13 text-secondary">Commune</span>
+                      </label>
+                      <div class="js-focus-state input-group u-form u-form--no-addon-brd">
+                        <select class="custom-select" name="commune" (change)="onCommuneSelect()" [(ngModel)]="selectedCommune">
+                          <option selected *ngFor="let c of communes" [ngValue]="c">{{c.nom}}</option>
+                        </select>
+
+                      </div>
+                      <!-- End Input -->
+                    </div>
+
+                    <div class="col-lg-4 align-self-lg-end">
+                      <button type="submit" class="btn btn-primary u-btn-primary transition-3d-hover" (click)="btn_recherche()">Rechercher</button>
+                    </div>
+                  </div>
+                  <!-- End Checkbox -->
+                </form>
+              </div>
+              
+
+              <!-- fin filtre type de sol -->
+              <div *ngIf="type_sol" class="row ml-2 mt-0 u-space-1-top">
+                <div class="card-group d-block d-lg-flex u-card--gutters-4-lg col-lg-8">
+                  <div class="card bg-transparent border-0 mb-5" *ngFor="let s of sols" (click)="userslect(s)">
+                    <!-- Job Listing -->
+                    <div class="card-body info-v2 bg-white text-center rounded transition-3d-hover">
+                      <img class="u-md-avatar rounded mb-4" src="{{get_sol_img(s.img)}}" alt="Image Description">
+                      <div class="mb-4">
+                        <h4 class="h6 mb-1"></h4>
+                        <p>{{s.nom}}</p>
+                      </div>
+                    </div>
+                    <!-- End Job Listing -->
+                  </div>
+
+   
+                </div>
+
+              </div>
+              <div *ngIf="type_sol">
+                <div class="alert_sol"> Veuillez cliquer sur un type de sol
+                </div>  
+                </div>
+
+              <a class="btn btn-primary u-btn-primary u-btn-wide transition-3d-hover text-white class_precedent mb-3"  (click)="goto(2)" *ngIf="sols.length>0 && type_sol && btn_suivant">
+                Suivant
+                <span class="fa fa-angle-right ml-2"></span>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+        <!-- End selection sol -->
+
+        <!-- definition du model d'engrais -->
+
+        <div class="w-lg-55" *ngIf="step==2">
+
+          <div class="u-bg-img-hero" style="background-image: url(../../assets/svg/bg/bg1.svg);">
+            <div class="container u-space-1-top">
+              <!-- Title -->
+              <div class="d-sm-flex justify-content-sm-between align-items-sm-center mb-5">
+                <h2 class="h3 font-weight-medium">Quel type d'engrais utilisez-vous ?</h2>
+              </div>
+              <!-- End Title -->
+              <div class="text-white u-bg-img-hero mb-2">
+              <a  href="#modal-sections" class="js-fancybox u-media-player btn_mar mb-4" href="javascript:;"
+              data-src="//vimeo.com/167434033"
+              data-speed="700"
+              data-animate-in="zoomIn"
+              data-animate-out="zoomOut"
+              data-caption="Front - Responsive Website Template" uk-toggle="target: #modal-sections">
+             <span class="u-media-player__icon u-media-player__icon--lg u-medi">
+               <span class="fas fa-plus u-media-player__icon-inner plus_centre"></span>
+             </span>
+           </a>  
+          </div>       
+              <table class="table table-bordered table-striped">
+                <thead align="center">
+                <tr>
+                  <th>Engrais</th>
+                  <th>Dose kg/ha</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody id="myTable">
+                <tr *ngFor="let list of prediction.input.listDoseEngrais, let i = index">
+                  <td>{{list.idModele}}</td>
+                  <td>{{list.dose}}</td>
+                  <td>
+                    <a (click)="fon_sup_ajou(i)" uk-icon="trash"></a>
+                  </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div id="modal-sections" uk-modal>
+                <div class="uk-modal-dialog">
+                  <div class="uk-modal-body">
+                    <div class="row ml-2">
+                      <form class="js-validate  w-100">
+                        <div class="row">
+                          <div class="col-lg-9 mb-4 mb-lg-0">
+                            <!-- Input -->
+                            <label class="d-block" for="keywordInput">
+                              <span class="d-block font-size-13 text-secondary">Engrais</span>
+                            </label>
+                            <div class="js-focus-state input-group u-form u-form--no-addon-brd">
+                              <select class="custom-select" name="type" [(ngModel)]="type_engrais" (click)="list_engr()">
+                                
+                                <option *ngFor="let a of data_engrais" [value]="a.id">{{a.nom}}</option>
+                              </select>
+
+                            </div>
+                            <!-- End Input -->
+                          </div>
+
+                          <div class="col-lg-3 col-xs-5">
+                              <label class="d-block" for="keywordInput">
+                                <span class="d-block font-size-13 text-secondary">Dose en kg</span>
+                              </label>
+                              <input type="number" class="class_inp" min="0" name="dose" [(ngModel)]="donne_engrais.dose" (click)="list_engr()">
+                            </div>
+
+
+                          <div class="col-lg-12 mb-4 mb-lg-0 mt-5">
+
+                            <input type="range" name="tauxN"  [(ngModel)]="tauxN1" class="custom-range" min="0.0000" max="75" step="0.1" id="customRange3" />
+                            <span class="text-secondary">tauxN: {{tauxN1}}</span>
+                            <!-- End Input -->
+                          </div>
+                          <div class="col-lg-12 mb-4 mb-lg-0 mt-5">
+
+                            <input type="range" name="tauxP" [(ngModel)]="tauxP1" class="custom-range" min="0.0000" max="75" step="0.1" id="customRange3" />
+                            <span class="text-secondary">tauxP: {{tauxP1}}</span>
+                            <!-- End Input -->
+                          </div>
+                          <div class="col-lg-12 mb-4 mb-lg-0 mt-5">
+
+                            <input type="range" name="tauxK" [(ngModel)]="tauxK1" class="custom-range" min="0.0000" max="75" step="0.1" id="customRange3" />
+                            <span class="text-secondary">tauxK: {{tauxK1}}</span>
+                            <!-- End Input -->
+                          </div>
+
+                          <div class="col-lg-12 mb-4 mb-lg-0 mt-5">
+
+                            <input type="range" name="tauxB" [(ngModel)]="tauxB1" class="custom-range" min="0.00" max="75" step="0.1" id="customRange3" />
+                            <span class="text-secondary">tauxB: {{tauxB1}}</span>
+                            <!-- End Input -->
+                          </div>
+
+                          <div class="col-lg-12 mb-4 mb-lg-0 mt-5">
+
+                            <input type="range" name="tauxS" [(ngModel)]="tauxS1" class="custom-range" min="0.00" max="75" step="0.1" id="customRange3" />
+                            <span class="text-secondary">tauxS: {{tauxS1}}</span>
+                            <!-- End Input -->
+                          </div>
+                        </div>
+                        <!-- End Checkbox -->
+                      </form>
+
+                    </div>
+                  </div>
+                  <div class="uk-text-center u-space-1-bottom">
+                    <a (click)="fon_ajou()" class="btn btn-primary u-btn-primary u-btn-wide transition-3d-hover text-white ml-2 uk-modal-close btn_padding">
+                      Ajouter
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+
+              <!-- formulaire de filtre de type de sol-->
+
+              <div class="mt-2 row justify-content-center class_precedent text-center col-xs-12 center-block">
+              <a class="btn btn-primary u-btn-primary u-btn-wide transition-3d-hover text-white ml-3 mb-3" (click)="goto(1)">
+                <span class="fa fa-angle-left ml-2"></span>
+                Précédent
+              </a>
+            </div>
+            </div>
+
+          </div>
+         
+        </div>
+        <!-- End engrais modele  -->
+      </div>
+
+      <!-- SVG Shapes v4 -->
+      <figure class="w-75 position-absolute-bottom-left-0 z-index-minus-1">
+
+      </figure>
+      <!-- End SVG Shapes v4 -->
+      <!-- Sidebar -->
+      <div class="col-lg-4 u-bg-img-hero min-height-100vh--lg position-absolute-top-right-0--lg px-lg-0 u-space-1-top u-bg-light-blue-50">
+        <!-- Fancybox -->
+        <div class="text-center text-lg-left mb-3 mb-lg-0" (click)="predict();">
+          <a class="js-fancybox u-media-player u-media-player--left-minus-50x-top-50x-lg mb-4" href="javascript:;" data-src="//vimeo.com/167434033"
+            data-speed="700" data-animate-in="zoomIn" data-animate-out="zoomOut" data-caption="Front - Responsive Website Template">
+            <span class="u-media-player__icon u-media-player__icon--lg u-media-player__icon--box-shadow mb-5">
+              <span class="fa fa-play u-media-player__icon-inner"></span>
+            </span>
+          </a>
+          <div class="text-center text-lg-left mb-3 mb-lg-0" *ngIf="animat_pred" (click)="predict();">
+            <a class="js-fancybox u-media-player u-media-player--left-minus-50x-top-50x-lg mb-4" href="javascript:;" data-src="//vimeo.com/167434033"
+              data-speed="700" data-animate-in="zoomIn" data-animate-out="zoomOut" data-caption="Front - Responsive Website Template">
+              <span class="u-media-player__icon u-media-player__icon--lg u-media-player__icon--success mb-5">
+                <span class="fa fa-play u-media-player__icon-inner"></span>
+              </span>
+            </a>
+          </div>
+        </div>
+        <!-- End Fancybox -->
+        
+        <!-- Stats Section -->
+        <div class="container col-xs-12">
+
+
+          <div class="justify-content-md-between mx-auto col-xs-12 u-space-3 mt-5" *ngIf="loadresult===false">
+              
+            <div class="u-content-centered mt-5">
+                
+              <!-- Figures -->
+              <div class="text-center">
+                <h3 class="display-2 text-success font-weight-bold js-counter">{{result.prediction}}</h3>
+                <p>Kg/hectare</p>
+                <div *ngIf="erreur_alert" class="alert alert-danger" role="alert">
+                  Veuillez vérifier vos parametres. 
+                 </div>
+              </div>
+              <!-- End Figures -->
+            </div>
+          </div>
+
+          <div class="row justify-content-md-between mx-auto" *ngIf="loadresult">
+                                            
+                                        <div class="u-content-centered">
+                                             
+                                            <div  id="testimonialsNavMain" class="js-slick-carousel js-slick-carousel u-slick u-content-centered-y p-4 mb-0 u-stroke-midnightblue"
+                                                data-infinite="true"
+                                                data-autoplay="true"
+                                                data-speed="5000"
+                                                data-fade="true"
+                                                data-nav-for="#testimonialsNavPagination"></div>
+                                        </div>
+                                        </div>
+            <div class="row position-absolute-bottom-0 text-center col-xs-12">
+                <button type="button" class="btn btn-outline-dark btn-lg btn-block" routerLink="/visualisation">Visualisation</button>
+            </div>
+        </div>
+        <!-- End Stats Section -->
+      </div>
+      <!-- End Sidebar -->
+    </div>
+    <script>
+        $(document).on('ready', function () {
+          // initialization of popups
+          $.HSCore.components.HSModalWindow.init('[data-modal-target]');
+        });
+      </script>
+  </div>
+  <!-- End Hero Section -->
+  <!-- End Description Section -->
+</main>
+<!-- ========== END MAIN ========== -->
+
+<!-- ========== FOOTER ========== -->
+<app-footer></app-footer>
+<!-- ========== END FOOTER ========== -->
+
+
+
+
+
+
